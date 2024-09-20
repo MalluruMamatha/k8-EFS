@@ -13,7 +13,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: efs-dynamic
+  name: nginx-dynamic
   labels:
     purpose: efs-dynamic
 spec:
@@ -26,4 +26,4 @@ spec:
   volumes:
     - name: persistent-storage
       persistentVolumeClaim:
-        claimName: efs-sc
+        claimName: efs-dynamic
