@@ -33,6 +33,9 @@ spec:
   containers:
   - name: nginx
     image: nginx
+  labels:
+    purpose: efs-static
+    project: expense
     volumeMounts:
     - name: persistent-storage
       mountPath: /usr/share/nginx/html
@@ -40,3 +43,17 @@ spec:
   - name: persistent-storage
     persistentVolumeClaim:
       claimName: efs-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-lb
+spec:
+  type: LoadBalancer
+  selector:
+    purpose: efs-static
+    project: expense
+  ports:
+  - protocol: TCP
+    port: 80 #service-port
+    targetPort: 80
