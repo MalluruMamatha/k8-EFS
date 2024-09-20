@@ -10,20 +10,20 @@ spec:
     requests:
       storage: 5Gi
 ---
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: efs-dynamic
-#   labels:
-#     purpose: efs-dynamic
-# spec:
-#   containers:
-#     - name: nginx
-#       image: nginx
-#       volumeMounts:
-#         - name: persistent-storage
-#           mountPath: /usr/share/nginx/html
-#   volumes:
-#     - name: persistent-storage
-#       persistentVolumeClaim:
-#         claimName: efs-dynamic
+apiVersion: v1
+kind: Pod
+metadata:
+  name: efs-dynamic
+  labels:
+    purpose: efs-dynamic
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+        - name: persistent-storage
+          mountPath: /usr/share/nginx/html
+  volumes:
+    - name: persistent-storage
+      persistentVolumeClaim:
+        claimName: efs-sc
